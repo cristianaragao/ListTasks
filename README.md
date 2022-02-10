@@ -8,7 +8,7 @@ Aplicativo CRUD de Tarefas com:
 
 <hr/>
 
-🛠 Pré-requisitos de Instalação:
+🛠 Instalação e configuração:
 
 Esse projeto foi criado e configurado com o Expo CLI.
 
