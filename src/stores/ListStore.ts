@@ -27,7 +27,7 @@ class ListStore {
     addUpdateItem = async (data: Data) => {
 
         const realm = await getRealm();
-    
+
         realm.write(() => {
             realm.create("ListSchema", data, Realm.UpdateMode.Modified);
         })
@@ -40,11 +40,11 @@ class ListStore {
     removeItem = async (id: string) => {
 
         const realm = await getRealm();
-    
+
         realm.write(() => {
 
             const deletedItem: Realm.Object | undefined = realm.objectForPrimaryKey("ListSchema", id);
-    
+
             realm.delete(deletedItem);
 
         })
@@ -56,19 +56,32 @@ class ListStore {
     }
 
     getList = async () => {
-  
+
         const realm = await getRealm();
- 
+
         const list = realm.objects("ListSchema");
 
         this.setList(list);
 
-        if(list) return true;
+        if (list) return true;
 
     }
 
     setList = (l: Realm.Results<Realm.Object>) => {
-        this.list = JSON.parse(JSON.stringify(Array.prototype.slice.call(l, 0, l.length)))
+
+        let data: Data[] = []
+
+        l.forEach((item: any) => {
+            data.push({
+                id: item.id,
+                createdDate: item.createdDate,
+                title: item.title,
+                description: item.description,
+                imagesPaths: item.imagesPaths
+            })
+        })
+
+        this.list = data;
     }
 
 }
