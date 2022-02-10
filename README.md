@@ -11,7 +11,9 @@ Aplicativo CRUD de Tarefas com:
 🛠 Pré-requisitos de Instalação:
 
 Esse projeto foi criado e configurado com o Expo CLI.
-Nota: nas versões anteriores à versão 44 do Expo SDK, o framework não tem possibilidade de integração com o RealmDB. Porém, na versão atual, o Expo necessita do [EAS](https://docs.expo.dev/eas/) para compilar o aplicativo com Realm nativamente. Logo, é necessário a configuração abaixo para a correta instalação do aplicativo.
+
+Nota: nas versões anteriores à versão 44 do Expo SDK, o framework não tem possibilidade de integração com o RealmDB. Porém, na versão atual, o Expo necessita do [EAS](https://docs.expo.dev/eas/) para compilar o aplicativo com Realm nativamente. 
+Logo, é necessário a configuração abaixo para a correta instalação do aplicativo.
 
 Supondo que você já tem o ambiente de desenvolvimento pronto (NodeJS, GIT, ), siga abaixo para os passos de instalação. Caso contrário,
 entre neste link para configurar o ambiente.
@@ -32,4 +34,6 @@ Você vai criar e/ou logar em uma conta Expo e instalar a compilação do projet
 * ```bash expo start --dev-client```
 O comando acima inicia a compilação e, então, o aplicativo estará pronto para uso (de desenvolvimento).
 
-Os passos acima, você encontra com mais detalhes [neste link](https://docs.expo.dev/development/getting-started/), no site da Expo
+Os passos acima, você encontra com mais detalhes [neste link](https://docs.expo.dev/development/getting-started/), no site da Expo.
+
+## Obrigado pela visita! :)
