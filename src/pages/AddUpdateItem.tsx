@@ -116,7 +116,7 @@ const AddUpdateItem: React.FC<AddItemProps> = ({
       }
 
       toast.show({
-        title: `Tarefa ${values.title} ${oldItem ? "atualizada" : "adicionada"
+        title: `Tarefa "${values.title}" ${oldItem ? "atualizada" : "adicionada"
           }`,
         status: "success",
         duration,
