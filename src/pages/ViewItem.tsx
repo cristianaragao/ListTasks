@@ -39,7 +39,7 @@ const ViewItem: React.FC<AddItemProps> = ({ route, navigation }) => {
   if (item === undefined)
     return (
       <div>
-        <h1>carregando</h1>
+        <h1>Loading</h1>
       </div>
     );
 
@@ -67,7 +67,7 @@ const ViewItem: React.FC<AddItemProps> = ({ route, navigation }) => {
         }}
       >
         <Text fontSize="2xl" fontWeight="bold">
-          {`Tarefa - ${moment(item.createdDate).format("DD/MM/YYYY")}`}
+          {`Tarefa - ${moment(item.createdDate).format("DD/MM/YYYY HH:mm")}`}
         </Text>
 
         <Text marginTop={4} fontWeight="bold">Título:</Text>

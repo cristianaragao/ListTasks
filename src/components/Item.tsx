@@ -69,7 +69,7 @@ const Item: React.FC<ItemProp> = ({ navigation, data, ListStore }) => {
         <Modal
           color="red.600"
           label="Excluir Tarefa"
-          description="Deseja mesmo excluir esta tarefa?"
+          description={`Deseja mesmo excluir a tarefa "${item.title}"?`}
           doneLabel="Excluir"
           donePress={() => {
             try {

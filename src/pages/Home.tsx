@@ -17,11 +17,11 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ navigation, ListStore }) => {
-  const { list } = ListStore;
+  const { list, getList } = ListStore;
 
-  // useEffect(() => {
-  //   getList();
-  // }, []);
+  useEffect(() => {
+    getList();
+  }, []);
 
   return (
     <Flex

@@ -1,13 +1,6 @@
-import { Data } from "../stores/ListStore";
-
-import getRealm from "./index";
-
 export default class ListSchema {
-
-    name = "List"
-
     static schema = {
-        name: this.name,
+        name: "ListSchema",
         primaryKey: "id",
         properties: {
             id: { type: "string", indexed: true },
@@ -18,33 +11,4 @@ export default class ListSchema {
         },
     }
 
-    addUpdateListSchema = async (data: Data) => {
-
-        const realm = await getRealm();
-    
-        realm.write(() => {
-            realm.create((new ListSchema()).name, data, Realm.UpdateMode.Modified);
-        })
-    
-    };
-
-    getListSchema = async () => {
-
-        const realm = await getRealm();
-    
-        return realm.objects((new ListSchema()).name);
-    
-    };
-    
-    deleteListSchema = async (data: Data) => {
-        const realm = await getRealm();
-    
-        realm.write(() => {
-            let dataDelete: Data | null = data;
-    
-            realm.delete(dataDelete);
-    
-            dataDelete = null;
-        })
-    };
 }

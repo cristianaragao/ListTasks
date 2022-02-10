@@ -1,6 +1,8 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-import ListSchema from "../schemas/ListSchema";
+import Realm from "realm";
+
+import getRealm from "../schemas/index";
 
 export interface Data {
     id: string;
@@ -14,49 +16,59 @@ class ListStore {
 
     list: Data[] = [];
 
-    private listSchema: ListSchema = new ListSchema();
-
     constructor() {
-        makeObservable(this, {
-            list: observable,
-            addItem: action,
-            updateItem: action,
-            removeItem: action,
-            getList: action
-        })
+        makeAutoObservable(this)
     }
 
-    addItem = (data: Data) => {
+    realmList = async () => {
+        return await getRealm()
+    }
 
-        this.list.push(data);
+    addUpdateItem = async (data: Data) => {
+
+        const realm = await getRealm();
+    
+        realm.write(() => {
+            realm.create("ListSchema", data, Realm.UpdateMode.Modified);
+        })
+
+        await this.getList();
 
         return true;
+    }
+
+    removeItem = async (id: string) => {
+
+        const realm = await getRealm();
+    
+        realm.write(() => {
+
+            const deletedItem: Realm.Object | undefined = realm.objectForPrimaryKey("ListSchema", id);
+    
+            realm.delete(deletedItem);
+
+        })
+
+        await this.getList();
+
+        return true;
+
     }
 
     getList = async () => {
-        const data = await this.listSchema.getListSchema();
-        console.log("results: ", data);
-        console.log("results: ", typeof data);
+  
+        const realm = await getRealm();
+ 
+        const list = realm.objects("ListSchema");
+
+        this.setList(list);
+
+        if(list) return true;
 
     }
 
-    updateItem = (data: Data) => {
-
-        const { id } = data;
-
-        const index = this.list.findIndex(item => item.id === id);
-
-        this.list[index] = data;
-
-        return true;
-    }
-
-    removeItem = (id: string) => {
-
-        this.list = this.list.filter(item => item.id !== id);
-
-        return true;
-
+    setList = (l: Realm.Results<Realm.Object>) => {
+        this.list = JSON.parse(JSON.stringify(Array.prototype.slice.call(l, 0, l.length)))
     }
 
 }

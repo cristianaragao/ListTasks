@@ -54,7 +54,7 @@ const AddUpdateItem: React.FC<AddItemProps> = ({
   ListStore,
   ...props
 }) => {
-  const { addItem, updateItem } = ListStore;
+  const { addUpdateItem } = ListStore;
 
   const oldItem: Readonly<Data> | null =
     route.params !== undefined ? JSON.parse(String(route.params)) : null;
@@ -97,24 +97,27 @@ const AddUpdateItem: React.FC<AddItemProps> = ({
   const submit = (values: any) => {
     try {
       if (!oldItem) {
+
         values.id = String(uuid.v4());
         values.createdDate = new Date();
 
-        addItem(values);
+        addUpdateItem(values);
+
       } else {
+
         const data: Data = {
           id: oldItem.id,
           createdDate: new Date(),
           ...values,
         };
 
-        updateItem(data);
+        addUpdateItem(data);
+
       }
 
       toast.show({
-        title: `Tarefa ${values.title} ${
-          oldItem ? "atualizada" : "adicionada"
-        }`,
+        title: `Tarefa ${values.title} ${oldItem ? "atualizada" : "adicionada"
+          }`,
         status: "success",
         duration,
         placement,
@@ -204,7 +207,6 @@ const AddUpdateItem: React.FC<AddItemProps> = ({
                     onChangeText={handleChange("description")}
                     onBlur={handleBlur("description")}
                     value={values.description}
-                    numberOfLines={6}
                     multiline
                     height={100}
                   />
