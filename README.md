@@ -20,18 +20,26 @@ entre neste link para configurar o ambiente.
 
 Siga as etapas abaixo para rodar o aplicativo (somente para dispositivos Android!).
 
-* ```bash npm install```
+* ```bash
+npm install
+```
 instala as dependências do projeto
 
-* ```bash npm install -g expo-cli eas-cli```
+* ```bash
+npm install -g expo-cli eas-cli
+```
 instala o comando de linha do Expo e o comando de linha do Expo Aplication Services, que servirá para rodar a build do Android.
 
-* ```bash eas build --profile development --platform android```
+* ```bash
+eas build --profile development --platform android
+```
 e Voilà: uma compilação de desenvolvimento do projeto (build do projeto para Android).
 Mas isso não é o suficiente para rodar o projeto no dispositivo.
 Você vai criar e/ou logar em uma conta Expo e instalar a compilação do projeto (pelo dispositivo físico ou emulador).
 
-* ```bash expo start --dev-client```
+* ```bash
+ expo start --dev-client
+```
 O comando acima inicia a compilação e, então, o aplicativo estará pronto para uso (de desenvolvimento).
 
 Os passos acima, você encontra com mais detalhes [neste link](https://docs.expo.dev/development/getting-started/), no site da Expo.
